@@ -35,6 +35,7 @@ app.options('*', (req, res) => {
 io.on('connection', socket => {
   socket.on('current_data', msg => {
     let data = JSON.parse(msg);
+    console.log(msg);
     io.emit('routing_data', data);
   });
 });

@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 # ファイル読み込みインターバル
 #READ_INTERVAL = 200 / 1000
-READ_INTERVAL = 200 / 1000
+READ_INTERVAL = 1000 / 1000
 
 # WebSocket サーバ
 socketIO = SocketIO('localhost', 8080)
@@ -76,6 +76,7 @@ def tail_like(path):
                 # print(buffer)
                 buffer = []
                 buffer.append(MakeTrajectoryData(columns))
+                print("sleeping : %d" % READ_INTERVAL)
                 time.sleep(READ_INTERVAL)
             else:
                 buffer.append(MakeTrajectoryData(columns))
