@@ -10,7 +10,7 @@ from collections import OrderedDict
 
 # ファイル読み込みインターバル
 #READ_INTERVAL = 200 / 1000
-READ_INTERVAL = 1000 / 1000
+READ_INTERVAL = 500 / 1000
 
 # WebSocket サーバ
 socketIO = SocketIO('localhost', 8080)
@@ -36,7 +36,7 @@ def send_data(data):
 def MakeTrajectoryData(columns):
     data = OrderedDict()
     data["unixtime"] = float(columns[0])
-    data["id"] = int(columns[1])
+    data["id"] = columns[1]
     data["x"] = float(columns[2])
     data["y"] = float(columns[3])
     data["z"] = float(columns[4])
@@ -65,6 +65,9 @@ def tail_like(path):
         for row in current_file:
             columns = row.split(',')
             unix_time = columns[0]
+            if int(columns[9]) != 2:
+                continue
+            print("ID: %s, X: %f, Y: %f" % (columns[1], float(columns[2]), float(columns[3])))
 
             if row == '':
                 pass
@@ -76,7 +79,7 @@ def tail_like(path):
                 # print(buffer)
                 buffer = []
                 buffer.append(MakeTrajectoryData(columns))
-                print("sleeping : %d" % READ_INTERVAL)
+                print("sleeping : %f" % READ_INTERVAL)
                 time.sleep(READ_INTERVAL)
             else:
                 buffer.append(MakeTrajectoryData(columns))
