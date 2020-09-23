@@ -181,6 +181,21 @@ class Trajectory extends Dashboard {
       .attr('fill-opacity', 0.25)
       .attr('r', 5);
 
+    // (for Debug) printing direction (degree)
+    // this.svg.selectall('g').remove();
+    // this.svg.append("g")
+      // .selectall('circle')
+      // .data(data)
+      // .enter()
+      // .append("text")
+      // .attr("x", d => this.xscale(d.x))
+      // .attr("y", d => this.yscale(d.y))
+      // .text(d => d.direction )
+      // .attr("dy", "-18px")
+      // .attr("fill", "#999999")
+      // .attr("font-size", "12px")
+      // .attr("text-anchor", "middle")
+
     this.svg.selectAll("red_circle")
       .data([
         {x: 5000, y: 0},
