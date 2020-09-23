@@ -162,6 +162,13 @@ class Trajectory extends Dashboard {
 
   drawFlow(data) {
     this.svg.selectAll('circle').remove();
+    console.log("received");
+    for (var i = 0; i < data.length; i++){
+      if (data[i].category == 2){
+        console.log(data[i].id);
+      }
+    }
+    console.log(i);
     this.svg.selectAll('circle')
       .data(data)
       .enter()
@@ -171,6 +178,21 @@ class Trajectory extends Dashboard {
       .attr('cy', d => this.yscale(d.y))
       .attr('stroke', 'blue')
       .attr('fill', 'blue')
+      .attr('fill-opacity', 0.25)
+      .attr('r', 5);
+
+    this.svg.selectAll("red_circle")
+      .data([
+        {x: 5000, y: 0},
+        {x: 10000, y: 0},
+        {x: 5000, y: 10000},
+        {x: 10000, y: 10000}
+      ]).enter()
+      .append("circle")
+      .attr('cx', d => this.xscale(d.x))
+      .attr('cy', d => this.yscale(d.y))
+      .attr('stroke', 'red')
+      .attr('fill', 'red')
       .attr('fill-opacity', 0.25)
       .attr('r', 5);
   }
