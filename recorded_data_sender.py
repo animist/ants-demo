@@ -9,8 +9,8 @@ import json
 from collections import OrderedDict
 
 # ファイル読み込みインターバル
-#READ_INTERVAL = 200 / 1000
-READ_INTERVAL = 500 / 1000
+READ_INTERVAL = 200 / 1000
+#READ_INTERVAL = 500 / 1000
 
 # WebSocket サーバ
 socketIO = SocketIO('localhost', 8080)
@@ -67,7 +67,7 @@ def tail_like(path):
             unix_time = columns[0]
             if int(columns[9]) != 2:
                 continue
-            print("ID: %s, X: %f, Y: %f" % (columns[1], float(columns[2]), float(columns[3])))
+            print("ID: %s, X: %f, Y: %f, Z: %f" % (columns[1], float(columns[2]), float(columns[3]), float(columns[4])))
 
             if row == '':
                 pass
